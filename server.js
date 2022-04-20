@@ -18,10 +18,7 @@ app.get("/", function (req, res) {
 });
 
 const Task = require("./controllers/taskController");
-app.use("/task", Sting);
-
-// const Project = require("./controllers/V1controllers/V2ProjectController");
-// app.use("/projects", Project);
+app.use("/task", Task);
 
 app.listen(PORT, () => {
   console.log(`Listening in on port: ${PORT}`);

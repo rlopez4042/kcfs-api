@@ -1,4 +1,4 @@
-const mongoose = require("../../connection");
+const mongoose = require("../connection");
 
 const taskSchema = new mongoose.Schema({
   //day of the challenge
