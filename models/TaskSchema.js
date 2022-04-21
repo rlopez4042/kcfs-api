@@ -2,7 +2,7 @@ const mongoose = require("../connection");
 
 const taskSchema = new mongoose.Schema({
   //day of the challenge
-  user: { type: Number },
+  day: { type: Number },
   //user
   user: { type: String },
   //challenge one

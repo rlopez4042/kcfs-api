@@ -8,7 +8,7 @@ const { authenticate } = require("../middleware/authenticate");
 //Create task for the day
 router.post(
   "/",
-  // authenticate,
+  authenticate,
   (req, res) => {
     const data = req.body;
     const userID = req.user.id;
@@ -25,7 +25,7 @@ router.post(
 //Read one task by day
 router.get(
   "/:id",
-  // authenticate,
+  authenticate,
   (req, res) => {
     Task.findById(req.params.id).then((task) => {
       res.json({
@@ -35,5 +35,27 @@ router.get(
     });
   }
 );
+
+//Update one sting by ID
+router.patch("/:id", authenticate, (req, res) => {
+  Task.findById(req.params.id).then((task) => {
+    const data = task.userID;
+    const userID = req.user.id;
+    if (data == userID) {
+      // Sting.updateOne(req.params.id, req.body).then((sting) => {
+        Task.findByIdAndUpdate(req.params.id, req.body).then((task) => {
+        res.json({
+          status: 200,
+          msg: "Item updated.",
+          task: task,
+          id: data,
+        });
+      });
+    } else {
+      console.log("Cannot patch.");
+    }
+  });
+});
+
 
 module.exports = router;
