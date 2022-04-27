@@ -15,5 +15,7 @@ const taskSchema = new mongoose.Schema({
   four: { type: Boolean, default: false },
   //challenge five
   image: { type: String },
+  //complete
+  complete: { type: Boolean, default: false },
 });
 module.exports = mongoose.model("Task", taskSchema);
